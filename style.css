@@ -1,0 +1,110 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+	padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #131315;
+}
+div {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+a {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  text-decoration: none;
+}
+.spin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid var(--color);
+  border-left: 8px solid transparent;
+  filter: drop-shadow(0 0 10px var(--color));
+  animation: spin 8s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotateX(60deg) rotateZ(0);
+  }
+  100% {
+    transform: rotateX(60deg) rotateZ(-360deg);
+  }
+}
+.spin::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 9px;
+  left: 9px;
+  border-radius: 50%;
+  background-color: var(--color);
+}
+.spin, .title, .icon {
+  position: absolute;
+  transform: rotateX(50deg) rotateZ(-3deg);
+  transition: all 0.5s ease-in-out;
+}
+.title {
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  transform: translateY(0px);
+  pointer-events: none;
+  opacity: 0;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.icon svg {
+  stroke: #a8a8a8;
+}
+.spin:hover {
+  filter: drop-shadow(0 0 10px var(--color));
+  animation-play-state: paused;
+}
+.spin:hover + .title + .icon {
+  transform: translateY(-150px);
+  transition-delay: 0.1s;
+  opacity: 1;
+  animation: wave 1s ease-in-out infinite;
+}
+.spin:hover + .title + .icon svg {
+  stroke: var(--color);
+  transition-delay: 0.2s;
+}
+.spin:hover + .title {
+  transform: translateY(-100px);
+  color: var(--color);
+  text-shadow: 0 0 3px var(--color);
+  transition-delay: 0.1s;
+  opacity: 1;
+  animation: wave 1s ease-in-out infinite;
+}
+@keyframes wave {
+  0%,
+  100% {
+    margin-bottom: 0;
+  }
+  50% {
+    margin-bottom: 15px;
+  }
+}
